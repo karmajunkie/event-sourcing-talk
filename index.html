@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Use the Source, Luke</title>
+
+  <meta name="viewport" content="width=device-width"/>
+
+  <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="./js/jquery-print.js"></script>
+  <script type="text/javascript" src="./js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="./js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="./js/fg.menu.js"></script>
+  <script type="text/javascript" src="./js/showoff.js"></script>
+  <script type="text/javascript" src="./js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="./js/sh_main.min.js"></script>
+  <script type="text/javascript" src="./js/core.js"></script>
+  <script type="text/javascript" src="./js/showoffcore.js"></script>
+  <script type="text/javascript" src="./js/coffee-script.js"></script>
+
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" >
+
+  
+    <link rel="stylesheet" href="file/presentation.css" type="text/css"/>
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+      setupPreso(false, './');
+  });
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content center" ref="one/slides/1">
+<h1>Use the Source, Luke: <br>High-fidelity history with event-sourced data</br>
+
+<div class="personal-info">
+<ul>
+<li>Keith Gaddis</li>
+<li>Spiceworks</li>
+<li>@karmajunkie</li>
+<li>keith.gaddis@gmail.com</li>
+</ul>
+</div>
+
+
+</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="one/slides/2">
+<h1>Event-sourcing defined</h1>
+
+<blockquote>[Event Sourcing] captures all changes to application state as a sequence of events
+<div class="attribution">
+Martin Fowler,<br>
+ http://martinfowler.com/eaaDev/EventSourcing.html
+</br>
+</div>
+
+
+</blockquote>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental bullets smaller" ref="one/slides/3">
+<h1>Event-sourcing defined</h1>
+
+<ul>
+<li>Application state changes encapsulated as events</li>
+<li>Events are serialized and stored, allowing playback of events later to recreate application state</li>
+<li>Snapshots of application state represent point-in-time</li>
+<li>Commonly used with Domain Driven Design (DDD) and a domain model</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental bullets" ref="one/slides/4">
+<h1>Event-sourcing: state changes</h1>
+
+<ul>
+<li>Events are <em>applied</em> to domain models</li>
+<li>Applying the event changes state</li>
+<li>Listeners (observers) also take action on events</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental bullets" ref="one/slides/5">
+<h1>Event sourcing benefits</h1>
+
+<h2>Events as history of data</h2>
+
+<ul>
+<li>Using events you can recreate the application state <em>at any point in time</em></li>
+<li>Example: Account history</li>
+<li>Need to know what an account looked at as of the last billing date despite any transactions done since</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental bullets" ref="one/slides/6">
+<h1>ES benefits</h1>
+
+<h2>ES is... never (rarely?) having to say "I'm sorry"</h2>
+
+<ul>
+<li>Bugs: fix a bug, replay events, database is fixed</li>
+<li>heavy/complex analytics</li>
+<li>future requirements or changes in modeling</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="one/slides/7">
+<h1>ES benefits</h1>
+
+<h2>Modeling</h2>
+
+<p>ES pushes non-domain logic out of the domain models<br>
+( You <em>should</em> be doing this anyway )</br>
+
+<p>System decoupling</p></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental smaller" ref="one/slides/8">
+<h1>ES Drawbacks: Overkill?</h1>
+
+<ul>
+<li>Forces you to really analyze/know your problem</li>
+<li>Early in product development domain may be unclear</li>
+<li>Agility tradeoff</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="one/slides/9">
+<h1>ES Drawbacks: Performance</h1>
+
+<ul>
+<li>Large event logs (thousands, even millions of events in some domains)</li>
+<li>Store snapshot of domain models</li>
+<li>ActiveModel serialization is great for this</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="one/slides/10">
+<h1>Common Use cases</h1>
+
+<ul>
+<li>Source control</li>
+<li>Financial/accounting</li>
+<li>complex domains</li>
+<li>distributed systems, service oriented architecture</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="one/slides/11">
+<h1>Code example: ordering system</h1>
+
+<p>Orders are composed of line items, each of which has a SKU and price</p></div>
+</div><div class="slide" data-transition="none"><div class="content code small" ref="one/slides/12">
+<h1>Aggregates (models)</h1>
+
+<pre><code>class Order
+  attr_accessor :order_id
+  attr_accessor :line_items
+
+  def initialize(order_id)
+    @order_id = order_id
+    @line_items = []
+  end
+end     
+
+class LineItem
+  attr_accessor :sku, :price
+  def initialize(sku, price)
+    @sku = sku
+    @price = price
+  end
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code smaller" ref="one/slides/13">
+<h1>Events</h1>
+
+<pre><code>class LineItemAddedEvent
+  attr_accessor :sku, :price, :time_added
+
+  def initialize(sku, price)
+    @sku = sku
+    @price = price
+    @time_added = Time.now
+  end
+end
+
+class LineItemRemovedEvent
+  attr_accessor :sku
+
+  def initialize(sku)
+    @sku = sku
+  end
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code small" ref="one/slides/14">
+<h1>Commands</h1>
+
+<pre><code>def add_line_item(sku, price)
+    line_item_added_event = 
+        LineItemAddedEvent.new(sku, price)
+    apply_event(line_item_added_event)
+end
+
+def remove_line_item(sku)
+    line_item_removed_event =
+        LineItemRemovedEvent.new(sku)
+    apply_event(line_item_removed_event)
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code smaller" ref="one/slides/15">
+<h1>Applying events</h1>
+
+<pre><code>def apply_event(event)
+    #store the event
+    REDIS.rpush "order-#{self.order_id}-events", 
+        YAML.dump(event)
+
+    #apply it
+    if event.is_a? LineItemAddedEvent
+        self.line_items &lt;&lt; 
+            LineItem.new(event.sku, event.price)
+    elsif event.is_a? LineItemRemovedEvent
+        self.line_items.delete_if {|li| li.sku == event.sku}
+    end
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code smaller" ref="one/slides/16">
+<h1>Rebuilding</h1>
+
+<pre><code>def rebuild
+    events = REDIS.lrange "order-#{order_id}-events", 0, -1
+    events.map!{|event| YAML.load(event)}
+    events.each{|event| self.apply_event(event)}
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code smaller" ref="one/slides/17">
+<h1>In Action</h1>
+
+<pre><code>order = Order.new("0001")
+order.add_line_item("sku-1", 1.0)
+order.add_line_item("sku-2", 2.0)
+order.add_line_item("sku-3", 3.0)
+puts "Order total with 3 items: #{order.order_total}"
+order.remove_line_item("sku-2")
+puts "Order total with 2 items: #{order.order_total}"
+
+order = nil
+order = Order.new('0001')
+order.rebuild
+puts "Order total after rebuild: #{order.line_items.count} items, $#{order.order_total}"
+
+Output:
+Order total with 3 items: 6.0
+Order total with 2 items: 4.0
+Order total after rebuild: 2 items, $4.0
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="one/slides/18">
+<h1>Introducing Replay</h1>
+
+<ul>
+<li>Facilitates event-sourcing</li>
+<li>Handles the event storage and application</li>
+<li>Allows other models to listen to events on the domain</li>
+<li>Useful alone or as part of a CQRS architecture</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content code smaller" ref="one/slides/19">
+<pre><code>require 'replay'
+class Order
+  include Replay::Domain
+
+  property :order_id
+  property :line_items
+
+  apply LineItemAddedEvent do |event|
+    self.line_items &lt;&lt; LineItem.new(
+            :sku =&gt; event.sku, :price =&gt; event.price)
+  end
+
+  apply LineItemRemovedEvent do |event|
+    self.line_items.delete_if {|li| li.sku == event.sku} 
+  end
+
+  def add_line_item(sku, price)
+    signal_event LineItemAddedEvent.new(
+            :sku =&gt; sku, :price =&gt; price)
+  end
+
+  def remove_line_item(sku)
+    signal_event LineItemRemovedEvent.new(:sku =&gt; sku)
+  end
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code smaller" ref="one/slides/20">
+<h1>LineItem revised</h1>
+
+<pre><code>class LineItem
+  include Replay::Domain
+
+  property :sku
+  property :price
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code smaller" ref="one/slides/21">
+<h1>Events</h1>
+
+<pre><code>class LineItemAddedEvent
+  include Replay::Event
+  property :sku
+  property :price
+end
+
+class LineItemRemovedEvent
+  include Replay::Event
+  property :sku
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content code" ref="one/slides/22">
+<h1>Listeners</h1>
+
+<pre><code>class PackagingService
+    listen OrderCompletedEvent do |event|
+        #send order to warehouse
+    end
+end
+</code></pre></div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental smaller" ref="one/slides/23">
+<h1>DCI</h1>
+
+<ul>
+<li>"Data Context Interaction"</li>
+<li>Separates domain models (data) from use-cases (context) and role (interaction)</li>
+<li>Roles are modules that define actions/commands</li>
+<li>Separate domain behavior from domain data</li>
+<li>Mix in or compose roles into objects (models) in the associated context</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="one/slides/24">
+<h1>CQRS in brief</h1>
+
+<h2>CQS:</h2>
+
+<ul>
+<li>Command Query Separation, introduced by Betrand Meyer.</li>
+<li>Methods should be commands (modify application state) or queries (return state)</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets incremental smaller" ref="one/slides/25">
+<h1>CQRS</h1>
+
+<ul>
+<li>Command Query Responsibility Segregation, popularized by Udi Dahan and Greg Young</li>
+<li>Carries CQS to a system architecture</li>
+<li>Domain models for Application state</li>
+<li>"Read models" for system queries, such as reporting</li>
+<li>Commands (typically objects) used to change system</li>
+<li>Commands generate events, which mutate state and can be syndicated to distributed systems</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="one/slides/26">
+<h1>More info:</h1>
+
+<ul>
+<li>http://martinfowler.com/eaaDev/EventSourcing.html</li>
+<li>dddcqrs.com</li>
+<li>Domain Driven Design, by Eric Evans</li>
+<li>http://karmajunkie.com</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="one/slides/27">
+<h1>Any Questions?</h1></div>
+</div></div>
+
+</body>
+</html>
